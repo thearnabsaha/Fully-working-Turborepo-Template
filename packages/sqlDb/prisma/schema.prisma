@@ -13,15 +13,4 @@ model User {
   password String
   age      Int
   email     String
-  todo     Todo[]
-}
-
-model Todo {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String
-  isDone      Boolean
-  userId      Int
-  user        User     @relation(fields: [userId], references: [id])
-  time        DateTime @default(now())
 }

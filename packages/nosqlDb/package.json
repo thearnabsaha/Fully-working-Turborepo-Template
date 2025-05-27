@@ -1,22 +1,23 @@
 {
-  "name": "@workspace/backend-common",
+  "name": "@workspace/nosqldb",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "exports": {
-    "./config": "./src/index.ts"
+    "./client": "./src/index.ts"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
     "@types/node": "^22.15.21",
     "@workspace/typescript-config": "workspace:*"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.5.0"
+    "dotenv": "^16.5.0",
+    "mongoose": "^8.15.1"
   }
 }

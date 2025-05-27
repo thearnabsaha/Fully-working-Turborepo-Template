@@ -9,6 +9,7 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import { SignUpSchema, SignInSchema } from '@workspace/common/types'
 import { JWT_SECRET } from '@workspace/backend-common/config'
+import { User,connectDB } from '@workspace/nosqldb/client'
 // npm install express cors cookie-parser dotenv helmet morgan
 // npm install -D @types/express @types/cors @types/cookie-parser @types/morgan
 import { prisma } from '@workspace/sqlDb/client'
@@ -31,6 +32,7 @@ app.use(express.json({ limit: '16kb' }));
 app.use(express.urlencoded({ extended: true, limit: '16kb' }));
 app.use(express.static('public'));
 app.use(cookieParser());
+connectDB()
 app.get('/', (req, res) => {
   res.send(JWT_SECRET);
 });
@@ -42,7 +44,8 @@ app.post('/signup', async (req, res) => {
     const user=await prisma.user.createMany({
       data:req.body
     });
-    res.send(user);
+    await User.create(req.body)
+    res.send(result);
   }
 });
 app.post('/signin', (req, res) => {
