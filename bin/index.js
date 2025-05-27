@@ -7,11 +7,29 @@ const folderName = process.argv[2] || 'my-app';
 
 console.log(`Creating project in folder: ${folderName}`);
 
-fs.mkdirSync(folderName);
+function copyRecursiveSync(src, dest) {
+  const exists = fs.existsSync(src);
+  const stats = exists && fs.statSync(src);
+  const isDirectory = exists && stats.isDirectory();
+  if (isDirectory) {
+    if (!fs.existsSync(dest)) fs.mkdirSync(dest);
+    fs.readdirSync(src).forEach((childItemName) => {
+      if (childItemName === 'node_modules') return;
+      copyRecursiveSync(path.join(src, childItemName), path.join(dest, childItemName));
+    });
+  } else {
+    fs.copyFileSync(src, dest);
+  }
+}
 
-fs.writeFileSync(path.join(folderName, 'README.md'), '# Welcome to your new project!\n');
+const sourceDir = path.resolve(__dirname, '..');
+const targetDir = path.resolve(process.cwd(), folderName);
 
-fs.mkdirSync(path.join(folderName, 'src'));
-fs.writeFileSync(path.join(folderName, 'src', 'index.js'), 'console.log("Hello from your new app!");');
+if (fs.existsSync(targetDir)) {
+  console.error('Target directory already exists.');
+  process.exit(1);
+}
 
-console.log('Project created successfully!');
+fs.mkdirSync(targetDir);
+copyRecursiveSync(sourceDir, targetDir);
+console.log('Project copied successfully!');
