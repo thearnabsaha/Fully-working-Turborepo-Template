@@ -11,7 +11,7 @@ import { SignUpSchema, SignInSchema } from '@workspace/common/types'
 import { JWT_SECRET } from '@workspace/backend-common/config'
 // npm install express cors cookie-parser dotenv helmet morgan
 // npm install -D @types/express @types/cors @types/cookie-parser @types/morgan
-
+import { prisma } from '@workspace/sqlDb/client'
 const morganFormat = ':method :url :status :response-time ms';
 
 app.use(morgan(morganFormat));
@@ -32,15 +32,17 @@ app.use(express.urlencoded({ extended: true, limit: '16kb' }));
 app.use(express.static('public'));
 app.use(cookieParser());
 app.get('/', (req, res) => {
-  // console.log(JWT_SECRET)
   res.send(JWT_SECRET);
 });
-app.post('/signup', (req, res) => {
+app.post('/signup', async (req, res) => {
   const result = SignUpSchema.safeParse(req.body);
   if (!result.success) {
     res.send(result.error.format());
   } else {
-    res.send(result);
+    const user=await prisma.user.createMany({
+      data:req.body
+    });
+    res.send(user);
   }
 });
 app.post('/signin', (req, res) => {
