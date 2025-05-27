@@ -1,6 +1,6 @@
 {
   "name": "arnab-repo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
@@ -18,7 +18,7 @@
   "engines": {
     "node": ">=20"
   },
-    "description": "Awesome utilities by Arnab",
+  "description": "Awesome utilities by Arnab",
   "author": "Arnab Saha",
   "license": "MIT"
 }
