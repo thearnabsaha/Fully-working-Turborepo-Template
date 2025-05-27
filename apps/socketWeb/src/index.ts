@@ -1,5 +1,5 @@
 import { WebSocketServer } from 'ws';
-const wss = new WebSocketServer({ port: 3002 });
+const wss = new WebSocketServer({ port: 4002 });
 wss.on('connection', (socket) => {
     console.log('Connection established');
     socket.send('Server is sending this message');
@@ -12,4 +12,4 @@ wss.on('connection', (socket) => {
     }
 });
 
-console.log('WebSocket server is running on ws://localhost:3002');
+console.log('WebSocket server is running on ws://localhost:4002');
