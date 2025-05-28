@@ -24,6 +24,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@workspace/typescript-config": "workspace:*",
     "@types/cookie-parser": "^1.4.8",
     "@types/cors": "^2.8.18",
     "@types/express": "^5.0.2",

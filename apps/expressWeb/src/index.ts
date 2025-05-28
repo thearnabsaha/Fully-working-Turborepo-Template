@@ -2,7 +2,7 @@ import express from 'express';
 const app = express();
 import dotenv from 'dotenv';
 dotenv.config();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 5001;
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import morgan from 'morgan';
