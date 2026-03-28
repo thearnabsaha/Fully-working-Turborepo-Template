@@ -2,11 +2,18 @@
   "name": "shadcn-ui-monorepo",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "scripts": {
+    "setup": "node scripts/setup-env.js",
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "typecheck": "turbo typecheck",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,md}\"",
+    "db:migrate": "pnpm --filter @workspace/sqldb exec prisma migrate dev",
+    "db:generate": "pnpm --filter @workspace/sqldb exec prisma generate",
+    "db:studio": "pnpm --filter @workspace/sqldb exec prisma studio"
   },
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",

@@ -1,0 +1,30 @@
+{
+  "name": "create-arnab-monorepo",
+  "version": "1.0.0",
+  "description": "Scaffold a full-stack Turborepo monorepo with Next.js, Vite, Express, WebSockets, Prisma, MongoDB, and shadcn/ui",
+  "bin": "./index.js",
+  "files": [
+    "index.js",
+    "template"
+  ],
+  "keywords": [
+    "monorepo",
+    "turborepo",
+    "template",
+    "nextjs",
+    "express",
+    "prisma",
+    "mongodb",
+    "shadcn-ui",
+    "vite",
+    "websocket",
+    "create",
+    "scaffold"
+  ],
+  "author": "Arnab Saha",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thearnabsaha/Fully-working-Turborepo-Template.git"
+  }
+}
