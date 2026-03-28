@@ -32,26 +32,27 @@ console.log(`\nCreating a new monorepo in ${projectDir}...\n`);
 
 fs.cpSync(templateDir, projectDir, { recursive: true });
 
-const DOTFILE_RENAMES = {
+const RENAMES = {
   _gitignore: ".gitignore",
   _env: ".env",
   _npmrc: ".npmrc",
+  "_docker-compose.yaml": "docker-compose.yaml",
 };
 
-function renameDotfiles(dir) {
+function renameFiles(dir) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      renameDotfiles(fullPath);
-    } else if (DOTFILE_RENAMES[entry.name]) {
-      const newPath = path.join(dir, DOTFILE_RENAMES[entry.name]);
+      renameFiles(fullPath);
+    } else if (RENAMES[entry.name]) {
+      const newPath = path.join(dir, RENAMES[entry.name]);
       fs.renameSync(fullPath, newPath);
     }
   }
 }
 
-renameDotfiles(projectDir);
+renameFiles(projectDir);
 
 const pkgPath = path.join(projectDir, "package.json");
 const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf-8"));

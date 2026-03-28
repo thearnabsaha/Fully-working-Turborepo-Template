@@ -1,6 +1,6 @@
 {
   "name": "create-arnab-monorepo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Scaffold a full-stack Turborepo monorepo with Next.js, Vite, Express, WebSockets, Prisma, MongoDB, and shadcn/ui",
   "bin": "./index.js",
   "files": [
